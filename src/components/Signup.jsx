@@ -1,6 +1,16 @@
 export default function Signup() {
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const fd = new FormData(event.target);
+    const acquisitionChannel = fd.getAll("acquisition");
+    const data = Object.fromEntries(fd.entries());
+    data.acquisition = acquisitionChannel;
+
+    console.log(data);
+  }
   return (
-    <form action="">
+    <form onSubmit={handleSubmit}>
       <h2>Welcome on board!</h2>
       <p>We just need a little information to get you started 🚀</p>
 
@@ -18,7 +28,7 @@ export default function Signup() {
         <div className="control">
           <label htmlFor="confirm-password">Confirm Password</label>
           <input
-            type="confirm-password"
+            type="password"
             id="confirm-password"
             name="confirm-password"
           />
